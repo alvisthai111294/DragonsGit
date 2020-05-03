@@ -172,18 +172,19 @@ public class homeGUI {
 	}
 	
 	/*
-	 * Getter for the version variable
+	 * Getter for the version variable (used in the about page)
 	 */
 	public double getVersion() {
 		return version;
 	}
 	
 	/*
-	 * Used to set the version.
-	 * 
-	 * Still needs error checking
+	 * Used to set the version. Does not accept a negative number.
 	 */
 	public void setVersion(double ver) {
-		version = ver;	
+		
+		// Make sure the version is positive before changing
+		if (ver > 0.0)
+			version = ver;	
 	}
 }
