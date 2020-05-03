@@ -22,6 +22,7 @@ public class homeGUI {
 	private JButton btnUserProfile;
 	private JButton btnNewButton_2;
 	private JTextField txtYouOwnyn;
+	private String version = "1.0";
 	
 
 	/**
@@ -61,7 +62,7 @@ public class homeGUI {
 		JButton btnNewButton = new JButton("About Us");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver 1.0\n Copyright @ 2020, UW Tacoma ", "About Us" , JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver "+version+"\n Copyright @ 2020, UW Tacoma ", "About Us" , JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});
