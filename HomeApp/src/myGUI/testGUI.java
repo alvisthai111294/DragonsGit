@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 class testGUI {
 
 	
-	/*
+	/**
 	 * This is used to test the version getters/setters
 	 * 
+	 * @author Chase Alder
 	 */
 	@Test
 	void testVersion() {

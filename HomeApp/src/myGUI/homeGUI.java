@@ -171,15 +171,21 @@ public class homeGUI {
 		frame.getContentPane().add(lblSerial);
 	}
 	
-	/*
+	/** 
 	 * Getter for the version variable (used in the about page)
+	 * 
+	 * @author Chase Alder
+	 * @return the current version value
 	 */
 	public double getVersion() {
 		return version;
 	}
 	
-	/*
+	/**
 	 * Used to set the version. Does not accept a negative number.
+	 * 
+	 * @author Chase Alder
+	 * @param ver	The value that you wish to set the version to
 	 */
 	public void setVersion(double ver) {
 		
