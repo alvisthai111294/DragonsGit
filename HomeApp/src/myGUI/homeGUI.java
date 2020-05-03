@@ -22,7 +22,7 @@ public class homeGUI {
 	private JButton btnUserProfile;
 	private JButton btnNewButton_2;
 	private JTextField txtYouOwnyn;
-	private String version = "1.0";
+	private double version = 1.0;
 	
 
 	/**
@@ -45,7 +45,6 @@ public class homeGUI {
 	/**
 	 * Create the application.
 	 */
-	
 	public homeGUI() {
 		initialize();
 	}
@@ -62,7 +61,7 @@ public class homeGUI {
 		JButton btnNewButton = new JButton("About Us");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver "+version+"\n Copyright @ 2020, UW Tacoma ", "About Us" , JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver "+getVersion()+"\n Copyright @ 2020, UW Tacoma ", "About Us" , JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});
@@ -170,5 +169,21 @@ public class homeGUI {
 		lblSerial.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblSerial.setBounds(365, 126, 222, 68);
 		frame.getContentPane().add(lblSerial);
+	}
+	
+	/*
+	 * Getter for the version variable
+	 */
+	public double getVersion() {
+		return version;
+	}
+	
+	/*
+	 * Used to set the version.
+	 * 
+	 * Still needs error checking
+	 */
+	public void setVersion(double ver) {
+		version = ver;	
 	}
 }
