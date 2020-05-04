@@ -207,6 +207,7 @@ public class homeGUI {
 		// Add Yes check box to the panel
 		frame.getContentPane().add(yesCheckBox);
 
+		//This is false by default because I havent add a tracker yet.
 		return false;
 
 	}
@@ -226,8 +227,19 @@ public class homeGUI {
 		// Add no check box to the panel
 		frame.getContentPane().add(noCheckBox);
 
+		//This is false by default because I havent add a tracker yet.
 		return false;
 
+	}
+	
+	/**
+	 * Keep track if yes and no box is checked or not.
+	 * @return boolean indicate yes and no check box condition
+	 */
+	public boolean isChecked() {
+		
+		
+		return false;		
 	}
 
 	/**
