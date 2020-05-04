@@ -4,21 +4,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import javax.swing.border.EmptyBorder;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class homeGUITest {
+	/**
+	 * Sample JFrame test.
+	 */
 	private JFrame frame;
+	/**
+	 * Sample JPanel test
+	 */
 	private JPanel pane;
-	private homeGUI tester;
+	/**
+	 * HomeGUI object for testing. Get the method thru this component.
+	 */
+	private homeGUI tester = new homeGUI();
 
-	/**  
+	/**
 	 * Set up a frame first
 	 */
 	protected void setUp() {
@@ -29,8 +36,8 @@ class homeGUITest {
 		pane.setBorder(new EmptyBorder(50, 50, 50, 50));
 
 	}
-	
-	//Tear down the frame.
+
+	// Tear down the frame.
 	protected void tearDown() {
 		frame.dispose();
 	}
@@ -88,8 +95,6 @@ class homeGUITest {
 	void testSearchTextField() {
 		String inputTest;
 
-		homeGUI tester = new homeGUI();
-
 		frame = new JFrame();
 		frame.setVisible(true);
 
@@ -125,6 +130,7 @@ class homeGUITest {
 
 	@Test
 	void testNoCheckBox() {
+
 		fail("Not yet implemented");
 	}
 
@@ -150,16 +156,6 @@ class homeGUITest {
 
 	@Test
 	void testInitialize() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetVersion() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetVersion() {
 		fail("Not yet implemented");
 	}
 

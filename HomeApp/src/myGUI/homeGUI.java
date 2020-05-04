@@ -197,7 +197,7 @@ public class homeGUI {
 	 * 
 	 * @return condition return statement.
 	 */
-	public boolean yesCheckBox() {
+	public boolean yesCheckBox(boolean check) {
 
 		// Create Yes check box
 		JCheckBox yesCheckBox = new JCheckBox("Yes");
@@ -217,7 +217,7 @@ public class homeGUI {
 	 * 
 	 * @return condition return statement.
 	 */
-	public boolean noCheckBox() {
+	public boolean noCheckBox(boolean check) {
 
 		// Create no check box
 		JCheckBox noCheckBox = new JCheckBox("No");
@@ -352,8 +352,8 @@ public class homeGUI {
 		userProfileButton();
 		photoButton();
 		youOwnTextField();
-		yesCheckBox();
-		noCheckBox();
+		yesCheckBox(true);
+		noCheckBox(true);
 
 		// This add tool should take a Tools object. We are leaving this as null for
 		// future development. Nick
