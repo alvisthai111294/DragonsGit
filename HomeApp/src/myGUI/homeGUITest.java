@@ -57,10 +57,13 @@ class homeGUITest {
 		fail("Not yet implemented");
 	}
 
+	/**
+	 * Test method for search test. Test passing a string through non interface
+	 * environment .
+	 */
 	@Test
 	void testSearchTextField() {
 		String inputTest;
-		String expResult;
 
 		homeGUI tester = new homeGUI();
 
@@ -68,7 +71,7 @@ class homeGUITest {
 		frame.setVisible(true);
 
 		inputTest = tester.searchTextField("This is a test");
-
+		// Check that you actually have access to your target components.
 		assertNotNull("This is a test", inputTest);
 	}
 
