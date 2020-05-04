@@ -39,6 +39,7 @@ class homeGUITest {
 
 	// Tear down the frame.
 	protected void tearDown() {
+		
 		frame.dispose();
 	}
 
