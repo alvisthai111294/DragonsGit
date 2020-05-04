@@ -2,15 +2,38 @@ package myGUI;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class homeGUITest {
 	private JFrame frame;
+	private JPanel pane;
+	private homeGUI tester;
+
+	/**  
+	 * Set up a frame first
+	 */
+	protected void setUp() {
+		// Create a frame with the test instance name as the title
+		frame = new JFrame();
+		pane = (JPanel) frame.getContentPane();
+		pane.setLayout(new FlowLayout());
+		pane.setBorder(new EmptyBorder(50, 50, 50, 50));
+
+	}
+	
+	//Tear down the frame.
+	protected void tearDown() {
+		frame.dispose();
+	}
 
 	public homeGUITest() {
 		frame = new JFrame();
