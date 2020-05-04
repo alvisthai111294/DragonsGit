@@ -5,6 +5,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class homeGUITest {
+	/**
+	 * This is used to test the version getters/setters
+	 * 
+	 * @author Chase Alder
+	 */
+	@Test
+	void testVersion() {
+		homeGUI gui = new homeGUI();
+
+		// Make sure that setting a normal version works
+		gui.setVersion(5.0);
+		assertTrue(gui.getVersion() == 5.0);
+
+		// Make sure that trying to set a negative number doesn't change the version
+		gui.setVersion(-5.0);
+		assertTrue(gui.getVersion() == 5.0);
+	}
 
 	@Test
 	void testHomeGUI() {
