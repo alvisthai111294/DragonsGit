@@ -113,7 +113,7 @@ public class homeGUI {
 	/**
 	 * Create a search text field, takes string input
 	 */
-	public void searchTextField() {
+	public String searchTextField(String input) {
 		// Create a new search text field and set values
 		searchTextField = new JTextField();
 		searchTextField.setBounds(10, 10, 381, 35);
@@ -121,6 +121,8 @@ public class homeGUI {
 		// Add TextField to the frame
 		frame.getContentPane().add(searchTextField);
 		searchTextField.setColumns(10);
+		
+		return input;
 	}
 
 	/**
@@ -345,7 +347,7 @@ public class homeGUI {
 	public void initialize() {
 		mainFrame();
 		aboutButton();
-		searchTextField();
+		searchTextField(null);
 		searchButton();
 		userProfileButton();
 		photoButton();

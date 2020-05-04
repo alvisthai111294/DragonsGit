@@ -2,9 +2,23 @@ package myGUI;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 class homeGUITest {
+	private JFrame frame;
+
+	public homeGUITest() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 800, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+	}
+
 	/**
 	 * This is used to test the version getters/setters
 	 * 
@@ -45,7 +59,17 @@ class homeGUITest {
 
 	@Test
 	void testSearchTextField() {
-		fail("Not yet implemented");
+		String inputTest;
+		String expResult;
+
+		homeGUI tester = new homeGUI();
+
+		frame = new JFrame();
+		frame.setVisible(true);
+
+		inputTest = tester.searchTextField("This is a test");
+
+		assertNotNull("This is a test", inputTest);
 	}
 
 	@Test
