@@ -39,8 +39,10 @@ class homeGUITest {
 
 	// Tear down the frame.
 	protected void tearDown() {
-		
-		frame.dispose();
+		if (this.frame != null) {
+			this.frame.dispose();
+			this.frame = null;
+		}
 	}
 
 	public homeGUITest() {
@@ -66,16 +68,6 @@ class homeGUITest {
 		// Make sure that trying to set a negative number doesn't change the version
 		gui.setVersion(-5.0);
 		assertTrue(gui.getVersion() == 5.0);
-	}
-
-	@Test
-	void testHomeGUI() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMain() {
-		fail("Not yet implemented");
 	}
 
 	@Test

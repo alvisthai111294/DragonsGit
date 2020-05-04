@@ -121,7 +121,7 @@ public class homeGUI {
 		// Add TextField to the frame
 		frame.getContentPane().add(searchTextField);
 		searchTextField.setColumns(10);
-		
+
 		return input;
 	}
 
@@ -207,7 +207,7 @@ public class homeGUI {
 		// Add Yes check box to the panel
 		frame.getContentPane().add(yesCheckBox);
 
-		//This is false by default because I havent add a tracker yet.
+		// This is false by default because I havent add a tracker yet.
 		return false;
 
 	}
@@ -227,19 +227,19 @@ public class homeGUI {
 		// Add no check box to the panel
 		frame.getContentPane().add(noCheckBox);
 
-		//This is false by default because I havent add a tracker yet.
+		// This is false by default because I havent add a tracker yet.
 		return false;
 
 	}
-	
+
 	/**
 	 * Keep track if yes and no box is checked or not.
+	 * 
 	 * @return boolean indicate yes and no check box condition
 	 */
 	public boolean isChecked() {
-		
-		
-		return false;		
+
+		return false;
 	}
 
 	/**
@@ -371,11 +371,12 @@ public class homeGUI {
 		// future development. Nick
 		addToolBoxButton(null);
 		linkToMenus();
+		generalLabel();
 		generalNotes();
 
 	}
-	
-	/** 
+
+	/**
 	 * Getter for the version variable (used in the about page)
 	 * 
 	 * @author Chase Alder
@@ -384,17 +385,17 @@ public class homeGUI {
 	public double getVersion() {
 		return version;
 	}
-	
+
 	/**
 	 * Used to set the version. Does not accept a negative number.
 	 * 
 	 * @author Chase Alder
-	 * @param ver	The value that you wish to set the version to
+	 * @param ver The value that you wish to set the version to
 	 */
 	public void setVersion(double ver) {
-		
+
 		// Make sure the version is positive before changing
 		if (ver > 0.0)
-			version = ver;	
+			version = ver;
 	}
 }
