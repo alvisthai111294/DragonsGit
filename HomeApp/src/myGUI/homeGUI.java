@@ -203,34 +203,23 @@ public class homeGUI {
 		JCheckBox yesCheckBox = new JCheckBox("Yes");
 		yesCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		yesCheckBox.setBounds(150, 232, 95, 21);
-
-		// Add Yes check box to the panel
-		frame.getContentPane().add(yesCheckBox);
-
-		// This is false by default because I havent add a tracker yet.
-		return false;
-
-	}
-
-	/**
-	 * Create a check box return boolean. Boolean helps with controls for future
-	 * implementation
-	 * 
-	 * @return condition return statement.
-	 */
-	public boolean noCheckBox(boolean check) {
-
+		
 		// Create no check box
 		JCheckBox noCheckBox = new JCheckBox("No");
 		noCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		noCheckBox.setBounds(150, 255, 95, 21);
+
+		// Add Yes check box to the panel
+		frame.getContentPane().add(yesCheckBox);
+		
 		// Add no check box to the panel
 		frame.getContentPane().add(noCheckBox);
 
-		// This is false by default because I havent add a tracker yet.
+		// This is false by default because I haven't add a tracker yet.
 		return false;
 
 	}
+
 
 	/**
 	 * Keep track if yes and no box is checked or not.
@@ -365,7 +354,7 @@ public class homeGUI {
 		photoButton();
 		youOwnTextField();
 		yesCheckBox(true);
-		noCheckBox(true);
+
 
 		// This add tool should take a Tools object. We are leaving this as null for
 		// future development. Nick

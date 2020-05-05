@@ -45,12 +45,6 @@ class homeGUITest {
 		}
 	}
 
-	public homeGUITest() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-	}
 
 	/**
 	 * This is used to test the version getters/setters
