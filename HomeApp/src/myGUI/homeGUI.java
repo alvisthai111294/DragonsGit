@@ -1,24 +1,20 @@
 package myGUI;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
-import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import tools.Tools;
 
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 
 public class homeGUI {
@@ -197,13 +193,13 @@ public class homeGUI {
 	 * 
 	 * @return condition return statement.
 	 */
-	public boolean yesCheckBox(boolean check) {
+	public boolean checkBoxex(boolean check) {
 
 		// Create Yes check box
 		JCheckBox yesCheckBox = new JCheckBox("Yes");
 		yesCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		yesCheckBox.setBounds(150, 232, 95, 21);
-		
+
 		// Create no check box
 		JCheckBox noCheckBox = new JCheckBox("No");
 		noCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -211,7 +207,7 @@ public class homeGUI {
 
 		// Add Yes check box to the panel
 		frame.getContentPane().add(yesCheckBox);
-		
+
 		// Add no check box to the panel
 		frame.getContentPane().add(noCheckBox);
 
@@ -219,7 +215,6 @@ public class homeGUI {
 		return false;
 
 	}
-
 
 	/**
 	 * Keep track if yes and no box is checked or not.
@@ -353,8 +348,7 @@ public class homeGUI {
 		userProfileButton();
 		photoButton();
 		youOwnTextField();
-		yesCheckBox(true);
-
+		checkBoxex(true);
 
 		// This add tool should take a Tools object. We are leaving this as null for
 		// future development. Nick
