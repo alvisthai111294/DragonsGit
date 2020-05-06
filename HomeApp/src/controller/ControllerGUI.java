@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,72 +13,70 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import controller.Tools;
-
 import javax.swing.JLabel;
 
-public class homeGUI {
+public class ControllerGUI {
 
-	private JFrame frame;
-	private JTextField searchTextField;
-	private JButton userProfilButton;
-	private JButton photoButton;
-	private JTextField urOwnTextField;
-	private double version = 1.0;
-
-	/**
-	 * Create the application.
-	 */
-	public homeGUI() {
-		initialize();
-	}
+	private static JFrame frame;
+	private static JTextField searchTextField;
+	private static JButton userProfilButton;
+	private static JButton photoButton;
+	private static JTextField urOwnTextField;
+	private static double version = 1.0;
 
 	/**
-	 * Launch the application.
+	 * Prevent outer class from creating an ojbect for this class. Original was
+	 * homeGUI.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-
-			public void run() {
-				setLookAndFeel();
-				try {
-					homeGUI window = new homeGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public ControllerGUI() {
+		createAndShowGUI();
 	}
 
-	/**
-	 * Set the look and feel for the GUI program.
-	 */
-	private static void setLookAndFeel() {
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//
+//			public void run() {
+//				setLookAndFeel();
+//				try {
+//					ControllerGUI window = new ControllerGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
-		try {
-
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			/* Turn off metal's use of bold fonts */
-			UIManager.put("swing.boldMetal", Boolean.FALSE);
-
-		} catch (final UnsupportedLookAndFeelException e) {
-			System.out.println("UnsupportedLookAndFeelException");
-		} catch (final ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException");
-		} catch (final InstantiationException e) {
-			System.out.println("InstantiationException");
-		} catch (final IllegalAccessException e) {
-			System.out.println("IllegalAccessException");
-		}
-
-	}
+//	/**
+//	 * Set the look and feel for the GUI program.
+//	 */
+//	private static void setLookAndFeel() {
+//
+//		try {
+//
+//			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+//			/* Turn off metal's use of bold fonts */
+//			UIManager.put("swing.boldMetal", Boolean.FALSE);
+//
+//		} catch (final UnsupportedLookAndFeelException e) {
+//			System.out.println("UnsupportedLookAndFeelException");
+//		} catch (final ClassNotFoundException e) {
+//			System.out.println("ClassNotFoundException");
+//		} catch (final InstantiationException e) {
+//			System.out.println("InstantiationException");
+//		} catch (final IllegalAccessException e) {
+//			System.out.println("IllegalAccessException");
+//		}
+//
+//	}
 
 	/**
 	 * Create new JFrame for main frame.
 	 */
-	public void mainFrame() {
+	public static void mainFrame() {
 		// Create main frame
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);
@@ -90,7 +88,7 @@ public class homeGUI {
 	/**
 	 * Create about button and add action listener.
 	 */
-	public void aboutButton() {
+	public static void aboutButton() {
 		// Create about button
 		JButton aboutButton = new JButton("About Us");
 		aboutButton.addActionListener(new ActionListener() {
@@ -110,7 +108,7 @@ public class homeGUI {
 	/**
 	 * Create a search text field, takes string input
 	 */
-	public String searchTextField(String input) {
+	public static String searchTextField(String input) {
 		// Create a new search text field and set values
 		searchTextField = new JTextField();
 		searchTextField.setBounds(10, 10, 381, 35);
@@ -126,7 +124,7 @@ public class homeGUI {
 	 * Create search button. I need support and advice on this method. I dont know
 	 * what to do with its structure yet.
 	 */
-	public void searchButton() {
+	public static void searchButton() {
 
 		// Create search button
 		JButton searchButton = new JButton("Search");
@@ -148,7 +146,7 @@ public class homeGUI {
 	/**
 	 * Create user profile. Waiting for future class support.
 	 */
-	public void userProfileButton() {
+	public static void userProfileButton() {
 		// Create a User Profile button
 		userProfilButton = new JButton("User Profile");
 		userProfilButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -161,7 +159,7 @@ public class homeGUI {
 	/**
 	 * Create photoButton. Waiting for future class development.
 	 */
-	public void photoButton() {
+	public static void photoButton() {
 
 		// Create a photo button
 		photoButton = new JButton("Photo");
@@ -175,7 +173,7 @@ public class homeGUI {
 	/**
 	 * Create a text field and and to frame.
 	 */
-	public void youOwnTextField() {
+	public static void youOwnTextField() {
 
 		// Create your own text field
 		urOwnTextField = new JTextField();
@@ -194,7 +192,7 @@ public class homeGUI {
 	 * 
 	 * @return condition return statement.
 	 */
-	public boolean checkBoxex(boolean check) {
+	public static boolean checkBoxex(boolean check) {
 
 		// Create Yes check box
 		JRadioButton yesCheckBox = new JRadioButton("Yes");
@@ -237,7 +235,7 @@ public class homeGUI {
 	 * @param houseTool
 	 * @return a house tool that the customer want to add.
 	 */
-	public Tools addToolBoxButton(Tools houseTool) {
+	public static Tools addToolBoxButton(Tools houseTool) {
 		// Create add to your tool box button
 		JButton addToolboxButton = new JButton("Add to your toolbox");
 		addToolboxButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -248,12 +246,12 @@ public class homeGUI {
 		return houseTool;
 	}
 
-	public void linkToMenus() {
+	public static void linkToMenus() {
 
 		// Create user menu button
 		JButton userMenuButton = new JButton("Link To User Manual");
 		userMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		userMenuButton.setBounds(264, 324, 238 , 51);
+		userMenuButton.setBounds(264, 324, 238, 51);
 		// Add user menu button to the panel
 		frame.getContentPane().add(userMenuButton);
 
@@ -282,7 +280,7 @@ public class homeGUI {
 	 * This class create Jbutton for the notes. I'm leaving it as a void method for
 	 * now. We will develop a separate class for the note later.
 	 */
-	public void generalNotes() {
+	public static void generalNotes() {
 
 		// Create warranty note button
 		JButton warrantyNoteButton = new JButton("Warranty Notes");
@@ -321,7 +319,7 @@ public class homeGUI {
 	 * This method create our labels and add it to the main frame. Waiting for Note
 	 * class to be developed later.
 	 */
-	public void generalLabel() {
+	public static void generalLabel() {
 
 		// Create new item brand label
 		JLabel itemBrandLabel = new JLabel("\tItem Name/ Brand Name");
@@ -341,7 +339,7 @@ public class homeGUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void initialize() {
+	public static void createAndShowGUI() {
 		mainFrame();
 		aboutButton();
 		searchTextField(null);
@@ -349,8 +347,8 @@ public class homeGUI {
 		userProfileButton();
 		photoButton();
 		youOwnTextField();
-		
-		//The problem with this is that we still can check 2 boxex at the same time.
+
+		// The problem with this is that we still can check 2 boxex at the same time.
 		checkBoxex(true);
 
 		// This add tool should take a Tools object. We are leaving this as null for
@@ -360,6 +358,10 @@ public class homeGUI {
 		generalLabel();
 		generalNotes();
 
+		// Display the window in proper size.
+		frame.pack();
+		frame.setVisible(true);
+
 	}
 
 	/**
@@ -368,7 +370,7 @@ public class homeGUI {
 	 * @author Chase Alder
 	 * @return the current version value
 	 */
-	public double getVersion() {
+	public static double getVersion() {
 		return version;
 	}
 

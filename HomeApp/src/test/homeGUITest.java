@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.junit.jupiter.api.Test;
 
-import view.homeGUI;
+import controller.ControllerGUI;
 
 class homeGUITest {
 	/**
@@ -25,7 +25,7 @@ class homeGUITest {
 	/**
 	 * HomeGUI object for testing. Get the method thru this component.
 	 */
-	private homeGUI tester = new homeGUI();
+	private ControllerGUI tester = new ControllerGUI();
 
 	/**
 	 * Set up a frame first
@@ -55,7 +55,7 @@ class homeGUITest {
 	 */
 	@Test
 	void testVersion() {
-		homeGUI gui = new homeGUI();
+		ControllerGUI gui = new ControllerGUI();
 
 		// Make sure that setting a normal version works
 		gui.setVersion(5.0);
