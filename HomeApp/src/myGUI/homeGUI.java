@@ -2,6 +2,7 @@ package myGUI;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
 import java.awt.EventQueue;
@@ -196,12 +197,12 @@ public class homeGUI {
 	public boolean checkBoxex(boolean check) {
 
 		// Create Yes check box
-		JCheckBox yesCheckBox = new JCheckBox("Yes");
+		JRadioButton yesCheckBox = new JRadioButton("Yes");
 		yesCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		yesCheckBox.setBounds(150, 232, 95, 21);
 
 		// Create no check box
-		JCheckBox noCheckBox = new JCheckBox("No");
+		JRadioButton noCheckBox = new JRadioButton("No");
 		noCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		noCheckBox.setBounds(150, 255, 95, 21);
 
@@ -252,7 +253,7 @@ public class homeGUI {
 		// Create user menu button
 		JButton userMenuButton = new JButton("Link To User Manual");
 		userMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		userMenuButton.setBounds(264, 324, 238, 51);
+		userMenuButton.setBounds(264, 324, 238 , 51);
 		// Add user menu button to the panel
 		frame.getContentPane().add(userMenuButton);
 
