@@ -252,7 +252,7 @@ public class homeGUI {
 		// Create user menu button
 		JButton userMenuButton = new JButton("Link To User Manual");
 		userMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		userMenuButton.setBounds(264, 324, 241, 53);
+		userMenuButton.setBounds(264, 324, 238, 51);
 		// Add user menu button to the panel
 		frame.getContentPane().add(userMenuButton);
 
@@ -348,6 +348,8 @@ public class homeGUI {
 		userProfileButton();
 		photoButton();
 		youOwnTextField();
+		
+		//The problem with this is that we still can check 2 boxex at the same time.
 		checkBoxex(true);
 
 		// This add tool should take a Tools object. We are leaving this as null for
