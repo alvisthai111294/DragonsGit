@@ -14,7 +14,7 @@ import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import tools.Tools;
+import controller.Tools;
 
 import javax.swing.JLabel;
 
