@@ -46,10 +46,9 @@ public final class Application_Main {
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+            	//Create a non direct access to the controller class and call the create and show GUI method.
             	ControllerGUI.createAndShowGUI();;
-            	// controller.ControllerGUI.class;
-            	//Will insert object from controller package here
-                //TimeController.createAndShowGUI();
+          
             }
         });
     }

@@ -25,53 +25,55 @@ public class ControllerGUI {
 	private static double version = 1.0;
 
 	/**
-	 * Prevent outer class from creating an ojbect for this class. Original was
+	 * Prevent outer class from creating an object for this class. Original was
 	 * homeGUI.
 	 */
 	public ControllerGUI() {
 		createAndShowGUI();
 	}
 
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//
-//			public void run() {
-//				setLookAndFeel();
-//				try {
-//					ControllerGUI window = new ControllerGUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
-//	/**
-//	 * Set the look and feel for the GUI program.
-//	 */
-//	private static void setLookAndFeel() {
-//
-//		try {
-//
-//			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-//			/* Turn off metal's use of bold fonts */
-//			UIManager.put("swing.boldMetal", Boolean.FALSE);
-//
-//		} catch (final UnsupportedLookAndFeelException e) {
-//			System.out.println("UnsupportedLookAndFeelException");
-//		} catch (final ClassNotFoundException e) {
-//			System.out.println("ClassNotFoundException");
-//		} catch (final InstantiationException e) {
-//			System.out.println("InstantiationException");
-//		} catch (final IllegalAccessException e) {
-//			System.out.println("IllegalAccessException");
-//		}
-//
-//	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+
+			public void run() {
+				setLookAndFeel();
+				try {
+					ControllerGUI window = new ControllerGUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Set the look and feel for the GUI program.
+	 */
+	private static void setLookAndFeel() {
+
+		try {
+
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			/* Turn off metal's use of bold fonts */
+			UIManager.put("swing.boldMetal", Boolean.FALSE);
+
+		} catch (final UnsupportedLookAndFeelException e) {
+			System.out.println("UnsupportedLookAndFeelException");
+		} catch (final ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException");
+		} catch (final InstantiationException e) {
+			System.out.println("InstantiationException");
+		} catch (final IllegalAccessException e) {
+			System.out.println("IllegalAccessException");
+		}
+
+	}
 
 	/**
 	 * Create new JFrame for main frame.
@@ -357,10 +359,7 @@ public class ControllerGUI {
 		linkToMenus();
 		generalLabel();
 		generalNotes();
-
-		// Display the window in proper size.
-		frame.pack();
-		frame.setVisible(true);
+	
 
 	}
 
