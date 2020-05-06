@@ -1,4 +1,4 @@
-package myGUI;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.junit.jupiter.api.Test;
+
+import view.homeGUI;
 
 class homeGUITest {
 	/**
