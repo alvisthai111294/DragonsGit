@@ -1,6 +1,8 @@
 package Main_Package;
 
 import controller.ControllerGUI;
+import controller.Login;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -47,8 +49,7 @@ public final class Application_Main {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
             	//Create a non direct access to the controller class and call the create and show GUI method.
-            	ControllerGUI.createAndShowGUI();;
-          
+            	ControllerGUI.createAndShowGUI();
             }
         });
     }
