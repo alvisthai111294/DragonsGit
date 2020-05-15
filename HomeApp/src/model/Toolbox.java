@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /** This is an array of tools
  * 
@@ -9,9 +10,9 @@ import java.util.ArrayList;
  */
 public class Toolbox {
 
-	String name;
-	ArrayList<Tool> toolArr;
-	ArrayList<String> allTags;
+	private String name;
+	private ArrayList<Tool> toolArr;
+	private ArrayList<String> allTags;
 	
 	/** Constructor for a new user toolbox. 
 	 * 
@@ -38,6 +39,7 @@ public class Toolbox {
 		for (Tool t : toolArr) {
 			
 			// If the tool you're currently on has the same name you're looking for, remove it
+			// Also, make both lowercase to reduce errors
 			if (t.checkName(name)) {
 				toolArr.remove(t);
 				return true;
@@ -56,10 +58,11 @@ public class Toolbox {
 	 */
 	public void addTool(Tool newTool) {
 		
+		toolArr.add(newTool);
 	}
 	
 	
-	/** This method refreshes the master tag list to make sure it's completely up to date
+	/** This method refreshes the master tag list to make sure it's completely up to date, as well as sorts it
 	 * 
 	 * @author chasealder
 	 * 
@@ -81,5 +84,7 @@ public class Toolbox {
 				}
 			}
 		}
+		
+		Collections.sort(allTags);
 	}
 }

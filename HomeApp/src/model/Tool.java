@@ -19,6 +19,8 @@ public class Tool {
 
 	/** Constructor to use if you have everything passed in
 	 * 
+	 * PROBABLY NEED TO MAKE MORE CONSTRUCTORS
+	 * 
 	 * @author chasealder
 	 * 
 	 */
@@ -54,11 +56,22 @@ public class Tool {
 		return true;
 	}
 	
-	public boolean removeTag() {
+	/** Used to remove tags from a tool
+	 * 
+	 * @param tagName the tag to be removed
+	 * @return boolean stating whether it worked or not
+	 */
+	public boolean removeTag(String tagName) {
+		
+		if (tags.contains(tagName)) {
+			tags.remove(tagName);
+			return true;
+		}
+		
 		return false;
 	}
 	
-	/** Used to check the name instead of a getter
+	/** Tells you whether the name of this tool matches the passed in name
 	 * 
 	 * @author chasealder
 	 * 
@@ -67,7 +80,7 @@ public class Tool {
 	 */
 	public boolean checkName(String piName) {
 		
-		if (piName.equals(this.name)) {
+		if (piName.equalsIgnoreCase(this.name)) {
 			return true;
 		}
 		
