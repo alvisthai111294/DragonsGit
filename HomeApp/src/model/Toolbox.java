@@ -39,7 +39,6 @@ public class Toolbox {
 		for (Tool t : toolArr) {
 			
 			// If the tool you're currently on has the same name you're looking for, remove it
-			// Also, make both lowercase to reduce errors
 			if (t.checkName(name)) {
 				toolArr.remove(t);
 				return true;
@@ -54,11 +53,15 @@ public class Toolbox {
 	 * 
 	 * @author chasealder
 	 * 
-	 * @param newTool
+	 * @param newTool is the tool to be added
 	 */
 	public void addTool(Tool newTool) {
 		
+		// Add the tool
 		toolArr.add(newTool);
+		
+		// Make sure to update the tag list since a new tool has been added
+		this.updateTags();
 	}
 	
 	
@@ -68,6 +71,8 @@ public class Toolbox {
 	 * 
 	 */
 	public void updateTags() {
+		
+		allTags = new ArrayList<String>();
 		
 		// Parse through every tool
 		for (Tool t : toolArr) {

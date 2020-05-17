@@ -22,4 +22,18 @@ public class ToolLink {
 		this.label = label;
 		this.link = link;
 	}
+	
+	/** Compares a passed in label to the given label.
+	 * 
+	 * @param label to be checked against this object's label
+	 * @return true if they're the same, false otherwise
+	 */
+	public boolean checkLabel(String label) {
+		
+		if (this.label.equalsIgnoreCase(label)) {
+			return true;
+		}
+		
+		return false;
+	}
 }

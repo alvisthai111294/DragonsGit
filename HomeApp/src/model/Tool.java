@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /** this class is used to create a unique tool
  * 
@@ -19,10 +20,7 @@ public class Tool {
 
 	/** Constructor to use if you have everything passed in
 	 * 
-	 * PROBABLY NEED TO MAKE MORE CONSTRUCTORS
-	 * 
 	 * @author chasealder
-	 * 
 	 */
 	public Tool(String name, String serial, ArrayList<String> tags, ArrayList<ToolLink> links, ArrayList<ToolFile> files, ArrayList<ToolReminder> reminders) {
 		
@@ -35,8 +33,95 @@ public class Tool {
 		this.reminders = reminders;
 	}
 	
+	/** A constructor that just uses a name. Intitializes all other variables to empty arrays.
+	 * 
+	 * @author chasealder
+	 */
+	public Tool(String name) {
+		this.name = name;
+		serial = "";
+		tags = new ArrayList<String>();
+		links = new ArrayList<ToolLink>();
+		files = new ArrayList<ToolFile>();
+		reminders = new ArrayList<ToolReminder>();
+	}
+	
+	/** Used to add a link to the link array
+	 * 
+	 * @author chasealder
+	 * 
+	 */
+	public void addLink(String label, String link) {
+		links.add(new ToolLink(label,link));
+	}
+	
+	/** Used to remove links from the links array
+	 * 
+	 * @author chasealder
+	 * 
+	 * @param label is the label of the link you want to remove
+	 * @return true if it was removed successfully
+	 */
+	public boolean removeLink(String label) {
+		
+		for (ToolLink tl : links) {
+			if (tl.checkLabel(label)) {
+				links.remove(tl);
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	/** Used to add a file to the file array
+	 * 
+	 * @param label is the label you want to use for this file
+	 * @param path is the full file path
+	 */
+	public void addFile(String label, String path) {
+		files.add(new ToolFile(label,path));
+	}
+	
+	/** Used to remove a file from the file array
+	 * 
+	 * @author chasealder
+	 * 
+	 * @param label is the label of the file you want to remove
+	 * @return true if the removal worked, false otherwise
+	 */
+	public boolean removeFile(String label) {
+		
+		for (ToolFile tf : files) {
+			if (tf.checkLabel(label)) {
+				files.remove(tf);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/** Used to add a reminder to the reminder array
+	 * 
+	 * @author chasealder
+	 * 
+	 * @param piDate is the date of the reminder
+	 * @param notes are the 'notes' that the user wants for that repair reminder
+	 */
+	public void addReminder(Date piDate, String notes) {
+		reminders.add(new ToolReminder(piDate,notes));
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean removeReminder() {
+		return false;
+	}
 	
 	/** Adds a tag to the tools tag list
+	 * 
+	 * @author chasealder
 	 * 
 	 * @param tagName is the tag to be added
 	 * @return false if the tag already exists, true if it was added successfully
@@ -57,6 +142,8 @@ public class Tool {
 	}
 	
 	/** Used to remove tags from a tool
+	 * 
+	 * @author chasealder
 	 * 
 	 * @param tagName the tag to be removed
 	 * @return boolean stating whether it worked or not
@@ -89,10 +176,11 @@ public class Tool {
 	
 	/** Used by the Toolbox to update allTags
 	 * 
+	 * @author chasealder
+	 * 
 	 * @return a shallow copy of this tool's tag list
 	 */
 	public ArrayList<String> getTags() {
-		
 		return (ArrayList<String>) tags.clone();
 	}
 }
