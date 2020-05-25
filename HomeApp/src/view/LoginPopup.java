@@ -1,4 +1,4 @@
-package controller;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-public class Login {
+public class LoginPopup {
 	
 	private JFrame frame = new JFrame();
 	private JPanel panel = new JPanel();
@@ -17,7 +17,7 @@ public class Login {
 	private JButton loginButton = makeLoginButton();
 	private JPasswordField pinField = makePinField();
 	
-	public Login() {
+	public LoginPopup() {
 		
 		// Create the frame and add the panel
 		frame.setSize(230,150);
@@ -43,7 +43,7 @@ public class Login {
 	/**
 	 * Constructs the "Guest" button
 	 * 
-	 * @author Chase Alder
+	 * @author chasealder
 	 * @return the guest button for bypassing login
 	 */
 	public JButton makeGuestButton() {
@@ -65,7 +65,7 @@ public class Login {
 	/**
 	 * Constructs the "Login" button
 	 * 
-	 * @author Chase Alder
+	 * @author chasealder
 	 * @return the login button for logging in with a PIN
 	 */
 	public JButton makeLoginButton() {
@@ -87,7 +87,7 @@ public class Login {
 	/**
 	 * Constructs a password field for PIN entry (login)
 	 * 
-	 * @author Chase Alder
+	 * @author chasealder
 	 * @return a password entry field
 	 */
 	public JPasswordField makePinField() {
