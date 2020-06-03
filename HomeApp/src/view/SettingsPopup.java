@@ -31,8 +31,8 @@ public class SettingsPopup extends JFrame {
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	// These are here because they need to be accessible by the "update" button
-	JTextField userEmail;
-	JTextField userName;
+	JTextField userEmailBox;
+	JTextField userNameBox;
 	
 	/** Creates the settings window
 	 * 
@@ -91,8 +91,8 @@ public class SettingsPopup extends JFrame {
 		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
-		userName = new JTextField(runProgram.getName());
-		panel.add(userName,gbc);
+		userNameBox = new JTextField(runProgram.getName());
+		panel.add(userNameBox,gbc);
 	}
 	
 	/** Adds the email label and box
@@ -122,8 +122,8 @@ public class SettingsPopup extends JFrame {
 		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
-		userEmail = new JTextField(runProgram.getEmail());
-		panel.add(userEmail,gbc);
+		userEmailBox = new JTextField(runProgram.getEmail());
+		panel.add(userEmailBox,gbc);
 	}
 	
 	/** This button updates the name/email to what is currently in the boxes.
@@ -145,7 +145,7 @@ public class SettingsPopup extends JFrame {
 		// If this button is clicked, make a new user with what is in the boxes currently and update the main User.
 		update.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				runProgram.setUser(userName.getText(), userEmail.getText());
+				runProgram.setUser(userNameBox.getText(), userEmailBox.getText());
 			}
 		});
 		
@@ -181,8 +181,8 @@ public class SettingsPopup extends JFrame {
 					runProgram.importData(jfc.getSelectedFile());
 					
 					// Update the window
-					userName.setText(runProgram.getName());
-					userEmail.setText(runProgram.getEmail());
+					userNameBox.setText(runProgram.getName());
+					userEmailBox.setText(runProgram.getEmail());
 				}
 			}
 		});
@@ -204,7 +204,26 @@ public class SettingsPopup extends JFrame {
 		gbc.gridheight = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		JButton saveButton = new JButton("SAVE TO FILE");	
+		JButton saveButton = new JButton("SAVE TO FILE");
+		
+		saveButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Update global variables first so the name/email in the boxes is saved
+				runProgram.setUser(userNameBox.getText(), userEmailBox.getText());
+				
+				// Make a filewriter and write the user/email to the file
+				try {
+					FileWriter fw = new FileWriter("./datafile.txt");
+					fw.write(runProgram.exportData());
+					fw.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		panel.add(saveButton,gbc);
 	}
 	

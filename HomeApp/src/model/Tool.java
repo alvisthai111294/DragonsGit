@@ -37,13 +37,21 @@ public class Tool {
 	 * 
 	 * @author chasealder
 	 */
-	public Tool(String name) {
+	public Tool(String name, String serial, ArrayList<String> tags) {
 		this.name = name;
-		serial = "";
-		tags = new ArrayList<String>();
+		this.serial = serial;
+		this.tags = tags;
 		links = new ArrayList<ToolLink>();
 		files = new ArrayList<ToolFile>();
 		reminders = new ArrayList<ToolReminder>();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getSerial() {
+		return serial;
 	}
 	
 	/** Used to add a link to the link array

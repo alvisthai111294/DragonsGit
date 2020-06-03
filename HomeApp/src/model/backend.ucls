@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="model.Tool" project="DragonsGit" file="/DragonsGit/HomeApp/src/model/Tool.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="389" width="572" x="-114" y="-61"/>    
+  <class id="1" language="java" name="model.Toolbox" project="DragonsGit" 
+    file="/DragonsGit/HomeApp/src/model/Toolbox.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="310" y="-3"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="model.Toolbox" project="DragonsGit" 
-    file="/DragonsGit/HomeApp/src/model/Toolbox.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="199" width="202" x="62" y="-283"/>    
-    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+  <class id="2" language="java" name="model.Tool" project="DragonsGit" file="/DragonsGit/HomeApp/src/model/Tool.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="313" y="335"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="model.ToolFile" project="DragonsGit" 
     file="/DragonsGit/HomeApp/src/model/ToolFile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-25" y="458"/>    
+    <position height="-1" width="-1" x="51" y="691"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="model.ToolLink" project="DragonsGit" 
     file="/DragonsGit/HomeApp/src/model/ToolLink.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="160" y="458"/>    
+    <position height="-1" width="-1" x="296" y="691"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="model.ToolReminder" project="DragonsGit" 
     file="/DragonsGit/HomeApp/src/model/ToolReminder.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="347" y="448"/>    
+    <position height="-1" width="-1" x="533" y="686"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,34 +48,34 @@
   </class>  
   <association id="6">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="reminders"/>      
+      <attribute id="7" name="toolArr"/>      
       <multiplicity id="8" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="9">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="10" name="links"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="10" name="files"/>      
       <multiplicity id="11" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="files"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="12">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="13" name="reminders"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="15">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="16" name="toolArr"/>      
+      <attribute id="16" name="links"/>      
       <multiplicity id="17" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

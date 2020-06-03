@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import controller.runProgram;
+import model.Tool;
+
 /** This page displays all your tools. It also allows access to the settings page.
  * 
  * @author chasealder
@@ -21,10 +24,10 @@ public class ToolBoxPage extends JFrame {
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	// These are all UI elements
-	private JComboBox tags;
-	private JButton add;
+	private JComboBox<String> tags;
+	private String chosenTag = "";
+	private JButton addTool;
 	private JButton settings;
-	private JButton tool1, tool2, tool3, tool4, tool5, tool6, tool7, tool8, tool9;
 	
 	/** Constructor. Set the dimensions and add the buttons.
 	 * 
@@ -48,6 +51,7 @@ public class ToolBoxPage extends JFrame {
 		addTagBox();
 		addNewToolButton();
 		addSettingsButton();
+		addToolButtons();
 	}
 	
 	/** Creates the dropdown menu that lists all the tags
@@ -63,7 +67,12 @@ public class ToolBoxPage extends JFrame {
 		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		tags = new JComboBox();
+		tags = new JComboBox<String>();
+		
+		for (int i = 0; i < runProgram.getTags().size(); i++) {
+			tags.addItem(runProgram.getTags().get(i));
+		}
+		
 		panel.add(tags,gbc);
 	}
 	
@@ -80,8 +89,20 @@ public class ToolBoxPage extends JFrame {
 		gbc.gridwidth = 1;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
-		add = new JButton("+ New Tool");
-		panel.add(add,gbc);
+		addTool = new JButton("+ New Tool");
+		
+		// This is a temp variable so I can access the frame inside the action listener
+		JFrame tempFrame = this;
+		
+		// Clicking this button opens up the new tool window
+		addTool.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ToolCreatePage();
+				tempFrame.dispose();
+			}
+		});
+		
+		panel.add(addTool,gbc);
 	}
 	
 	/** Takes you to the settings page
@@ -110,9 +131,47 @@ public class ToolBoxPage extends JFrame {
 	}
 	
 	/** This method is going to add buttons for all the tools through some type of loop
+	 * Currently has one placeholder tool.
+	 * 
 	 * 
 	 */
 	public void addToolButtons() {
 		
+		// This is to initialize all the buttons, and set up their action listeners
+		for (int i = 0; i < runProgram.getToolbox().size(); i++) {
+			
+			gbc.insets = new Insets(0,0,0,0);
+			gbc.weightx = 1;
+			gbc.weighty = 1;
+			gbc.gridx = 0;
+			// y location changes with each button added
+			gbc.gridy = 1 + i;
+			gbc.gridwidth = 4;
+			gbc.fill = GridBagConstraints.BOTH;
+			
+			// Read the relevant information
+			String toolName = runProgram.getToolbox().get(i).getName();
+			String toolSerial = runProgram.getToolbox().get(i).getSerial();
+			
+			// Make the button with it's name
+			JButton newButton = new JButton(toolName);
+			
+			// This must be final for the action listener I guess?
+			final int passIn = i;
+			
+			JFrame tempFrame = this;
+			
+			newButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					tempFrame.dispose();
+					new ToolPage(runProgram.getToolbox().get(passIn));
+				}
+			});
+			
+			// This is where you test for the tag. Not yet implemented
+			if (chosenTag.equals("")) {
+				panel.add(newButton,gbc);
+			}
+		}
 	}
 }
