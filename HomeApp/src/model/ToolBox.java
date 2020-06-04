@@ -8,7 +8,7 @@ import java.util.Collections;
  * @author chasealder
  *
  */
-public class Toolbox {
+public class ToolBox {
 
 	private String name;
 	private ArrayList<Tool> toolArr;
