@@ -227,6 +227,18 @@ public class ToolPage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		edit = new JButton("EDIT");
+		
+		// This is a temp variable so I can access the frame inside the action listener
+		JFrame tempFrame = this;
+		
+		// This allows you to edit the item
+		edit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ToolCreatePage(tool);
+				tempFrame.dispose();
+			}
+		});
+		
 		panel.add(edit, gbc);
 	}
 	
@@ -252,6 +264,7 @@ public class ToolPage extends JFrame {
 		delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				runProgram.getToolbox().remove(tool);
+				runProgram.updateTags();
 				new ToolBoxPage();
 				tempFrame.dispose();
 			}

@@ -202,7 +202,7 @@ public class runProgram {
 	 * @author chasealder
 	 * 
 	 */
-	public void updateTags() {
+	public static void updateTags() {
 		
 		allTags = new ArrayList<String>();
 		

@@ -43,6 +43,10 @@ public class ToolCreatePage extends JFrame {
 	JTextField serial;
 	JTextField tags;
 	
+	// This tells the program whether this window was created to edit an existing tool
+	boolean editPage = false;
+	Tool editTool;
+	
 	/** Constructor. Sets the dimensions and loads all the buttons.
 	 * 
 	 * @author chasealder
@@ -52,12 +56,50 @@ public class ToolCreatePage extends JFrame {
 		panel.setLayout(new GridBagLayout());
 		panel.setPreferredSize(new Dimension(1000, 500));
 		
+		// Add all the buttons and functionality
 		buildPanel();
 		
 		this.setLayout(new BorderLayout());
 		this.add(panel, BorderLayout.CENTER);
 		this.pack();
 		this.setVisible(true);
+	}
+	
+	// This is used for the edit button
+	public ToolCreatePage(Tool toolToEdit) {
+		
+		editPage = true;
+		
+		panel.setLayout(new GridBagLayout());
+		panel.setPreferredSize(new Dimension(1000, 500));
+		
+		// Add all the buttons and functionality
+		buildPanel();
+		
+		// This is updating the fields with the tool to be edited's information
+		this.editTool = toolToEdit;
+		name.setText(editTool.getName());
+		serial.setText(editTool.getSerial());
+		
+		// Update the tags in the box
+		String tagText = "";
+		
+		for (int i = 0; i < editTool.getTags().size(); i++) {
+			tagText += editTool.getTags().get(i);
+			
+			// If it's the last tag, don't put the comma ;)
+			if (i != editTool.getTags().size()-1) {
+				tagText += ", ";
+			}
+		}
+		
+		tags.setText(tagText);
+		
+		this.setLayout(new BorderLayout());
+		this.add(panel, BorderLayout.CENTER);
+		this.pack();
+		this.setVisible(true);
+		
 	}
 	
 	public void buildPanel() {
@@ -202,9 +244,15 @@ public class ToolCreatePage extends JFrame {
 					riTags.add(tag.trim());
 				}
 				
+				// This is for deleting the old copy if this is an edit of an existing tool
+				if (editPage == true) {
+					runProgram.getToolbox().remove(editTool);
+				}
 				
 				Tool newTool = new Tool(name.getText(),serial.getText(),riTags);
 				runProgram.getToolbox().add(newTool);
+				runProgram.updateTags();
+				
 				new ToolBoxPage();
 				tempFrame.dispose();
 			}
