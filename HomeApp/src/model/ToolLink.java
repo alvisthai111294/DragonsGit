@@ -8,8 +8,8 @@ package model;
  */
 public class ToolLink {
 
-	String label; // Label shown to user
-	String link; // Web link attached to file
+	private String label; // Label shown to user
+	private String link; // Web link attached to file
 	
 	/** Basic constructor
 	 * 
@@ -19,8 +19,8 @@ public class ToolLink {
 	 * @param link is the webpage link you want to save
 	 */
 	public ToolLink(String label, String link) {
-		this.label = label;
-		this.link = link;
+		this.setLabel(label);
+		this.setLink(link);
 	}
 	
 	/** Compares a passed in label to the given label.
@@ -30,10 +30,26 @@ public class ToolLink {
 	 */
 	public boolean checkLabel(String label) {
 		
-		if (this.label.equalsIgnoreCase(label)) {
+		if (this.getLabel().equalsIgnoreCase(label)) {
 			return true;
 		}
 		
 		return false;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 }

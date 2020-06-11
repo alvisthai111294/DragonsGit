@@ -9,8 +9,8 @@ import java.util.Scanner;
 import model.*;
 import view.*;
 
-/** This is the main controller. Currently, it runs the program and holds the username and email of the user.
- * Eventually, it will also hold the toolbox. It also stores the functionality for importing and exporting user data.
+/** This is the main controller. Currently, it runs the program and holds the username and email of the user, and
+ *  also holds the toolbox. It also stores the functionality for importing and exporting user data.
  * 
  * @author chasealder
  *
@@ -36,7 +36,7 @@ public class runProgram {
 		}
 		updateTags();
 		
-		new ToolBoxPage();
+		new ToolBoxPage("");
 	}
 	
 	/** Changes the username and email
@@ -71,10 +71,18 @@ public class runProgram {
 		return email;
 	}
 	
+	/** Getter for the toolbox
+	 * 
+	 * @return main tool array
+	 */
 	public static ArrayList<Tool> getToolbox() {
 		return toolbox;
 	}
 	
+	/** Getter for the full tag list
+	 * 
+	 * @return complete tag list
+	 */
 	public static ArrayList<String> getTags() {
 		return allTags;
 	}
@@ -87,6 +95,7 @@ public class runProgram {
 	 */
 	public static String exportData() {
 		
+		// Write the name and email, and then the number of tools
 		String allData = name + "\n" + email + "\n" + toolbox.size();
 		
 		// For each tool, export it's data
@@ -94,10 +103,36 @@ public class runProgram {
 			// output name and serial
 			allData += "\n" + toolbox.get(i).getName();
 			allData += "\n" + toolbox.get(i).getSerial();
+			
+			// Write the number of tags, and what they are
 			allData += "\n" + toolbox.get(i).getTags().size();
 			
 			for (int j = 0; j < toolbox.get(i).getTags().size(); j++) {
 				allData += "\n" + toolbox.get(i).getTags().get(j);
+			}
+			
+			// Write the number of files, with it's label and path
+			allData += "\n" + toolbox.get(i).getFiles().size();
+			
+			for (int j = 0; j < toolbox.get(i).getFiles().size(); j++) {
+				allData += "\n" + toolbox.get(i).getFiles().get(j).getLabel();
+				allData += "\n" + toolbox.get(i).getFiles().get(j).getPath();
+			}
+			
+			// Write the number of Links, with it's label and URL
+			allData += "\n" + toolbox.get(i).getLinks().size();
+			
+			for (int j = 0; j < toolbox.get(i).getLinks().size(); j++) {
+				allData += "\n" + toolbox.get(i).getLinks().get(j).getLabel();
+				allData += "\n" + toolbox.get(i).getLinks().get(j).getLink();
+			}
+			
+			// Write the number of Links, with it's label and URL
+			allData += "\n" + toolbox.get(i).getReminders().size();
+			
+			for (int j = 0; j < toolbox.get(i).getReminders().size(); j++) {
+				allData += "\n" + toolbox.get(i).getReminders().get(j).getDate();
+				allData += "\n" + toolbox.get(i).getReminders().get(j).getNotes();
 			}
 		}
 		
@@ -145,16 +180,50 @@ public class runProgram {
 			String riToolName = sc.nextLine().trim();
 			String riToolSerial = sc.nextLine().trim();
 			
-			// Make a tag array and read in the number of tags
+			// Make a the arrays for tags, files, links, and reminders
 			ArrayList<String> riTags = new ArrayList<String>();
+			ArrayList<ToolFile> riFiles = new ArrayList<ToolFile>();
+			ArrayList<ToolLink> riLinks = new ArrayList<ToolLink>();
+			ArrayList<ToolReminder> riReminders = new ArrayList<ToolReminder>();
+			
+			// Get number of tags and read them in
 			int numTags = Integer.parseInt(sc.nextLine().trim());
 			
-			// Loop through and collect the tags
 			for (int j = 0; j < numTags; j++) {
 				riTags.add(sc.nextLine().trim());
 			}
 			
-			toolbox.add(new Tool(riToolName,riToolSerial,riTags));
+			// Get number of files and read them in
+			int numFiles = Integer.parseInt(sc.nextLine().trim());
+			
+			for (int j = 0; j < numFiles; j++) {
+				String label = sc.nextLine().trim();
+				String path = sc.nextLine().trim();
+				
+				riFiles.add(new ToolFile(label,path));
+			}
+			
+			// Get number of links and read them in
+			int numLinks = Integer.parseInt(sc.nextLine().trim());
+			
+			for (int j = 0; j < numLinks; j++) {
+				String label = sc.nextLine().trim();
+				String link = sc.nextLine().trim();
+				
+				riLinks.add(new ToolLink(label,link));
+			}
+			
+			// Get number of reminders and read them in
+			int numReminders = Integer.parseInt(sc.nextLine().trim());
+			
+			for (int j = 0; j < numReminders; j++) {
+				String label = sc.nextLine().trim();
+				String date = sc.nextLine().trim();
+				
+				riReminders.add(new ToolReminder(label,date));
+			}
+			
+			toolbox.add(new Tool(riToolName,riToolSerial,riTags,riLinks,riFiles,riReminders));
 		}
 	}
 	

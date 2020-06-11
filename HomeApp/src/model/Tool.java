@@ -33,25 +33,24 @@ public class Tool {
 		this.reminders = reminders;
 	}
 	
-	/** A constructor that just uses a name. Intitializes all other variables to empty arrays.
-	 * 
-	 * @author chasealder
-	 */
-	public Tool(String name, String serial, ArrayList<String> tags) {
-		this.name = name;
-		this.serial = serial;
-		this.tags = tags;
-		links = new ArrayList<ToolLink>();
-		files = new ArrayList<ToolFile>();
-		reminders = new ArrayList<ToolReminder>();
-	}
-	
 	public String getName() {
 		return name;
 	}
 	
 	public String getSerial() {
 		return serial;
+	}
+	
+	public ArrayList<ToolLink> getLinks() {
+		return links;
+	}
+	
+	public ArrayList<ToolFile> getFiles() {
+		return files;
+	}
+	
+	public ArrayList<ToolReminder> getReminders() {
+		return reminders;
 	}
 	
 	/** Used to add a link to the link array
@@ -115,16 +114,8 @@ public class Tool {
 	 * @param piDate is the date of the reminder
 	 * @param notes are the 'notes' that the user wants for that repair reminder
 	 */
-	public void addReminder(Date piDate, String notes) {
+	public void addReminder(String piDate, String notes) {
 		reminders.add(new ToolReminder(piDate,notes));
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean removeReminder() {
-		return false;
 	}
 	
 	/** Adds a tag to the tools tag list

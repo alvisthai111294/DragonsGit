@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.runProgram;
-import model.Tool;
+import model.*;
 
 /** This is the page that you see after picking a tool from your toolbox.
  * 
@@ -43,6 +45,11 @@ public class ToolCreatePage extends JFrame {
 	JTextField serial;
 	JTextField tags;
 	
+	// These are for updating the different attachments
+	ArrayList<ToolFile> fileArr = new ArrayList<ToolFile>();
+	ArrayList<ToolLink> linkArr = new ArrayList<ToolLink>();
+	ArrayList<ToolReminder> reminderArr = new ArrayList<ToolReminder>();
+	
 	// This tells the program whether this window was created to edit an existing tool
 	boolean editPage = false;
 	Tool editTool;
@@ -65,7 +72,12 @@ public class ToolCreatePage extends JFrame {
 		this.setVisible(true);
 	}
 	
-	// This is used for the edit button
+	/** This constructor is used for editing an existing tool
+	 * 
+	 * @author chasealder
+	 * 
+	 * @param toolToEdit is the tool you will be editing
+	 */
 	public ToolCreatePage(Tool toolToEdit) {
 		
 		editPage = true;
@@ -80,6 +92,9 @@ public class ToolCreatePage extends JFrame {
 		this.editTool = toolToEdit;
 		name.setText(editTool.getName());
 		serial.setText(editTool.getSerial());
+		fileArr = editTool.getFiles();
+		linkArr = editTool.getLinks();
+		reminderArr = editTool.getReminders();
 		
 		// Update the tags in the box
 		String tagText = "";
@@ -102,6 +117,10 @@ public class ToolCreatePage extends JFrame {
 		
 	}
 	
+	/** This adds all the buttons and functionality to the panel
+	 * 
+	 * @author chasealder
+	 */
 	public void buildPanel() {
 		addNameLabel();
 		addSerialLabel();
@@ -160,7 +179,7 @@ public class ToolCreatePage extends JFrame {
 		gbc.gridwidth = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		tags = new JTextField("(ADD TAGS COMMA SEPARATED (NO SPACES))");
+		tags = new JTextField("(ADD TAGS COMMA SEPARATED)");
 		panel.add(tags,gbc);
 	}
 	
@@ -178,6 +197,18 @@ public class ToolCreatePage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		files = new JButton("Add Files");
+		
+		// This opens two dialog windows that take two relevant pieces of data from the user. Then an object is constructed and 
+		// added to the file array.
+		files.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String label = (String)JOptionPane.showInputDialog(new Frame(),"What is the file's label?","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				String path = (String)JOptionPane.showInputDialog(new Frame(),"What is the file's path?","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				
+				fileArr.add(new ToolFile(label,path));
+			}
+		});
+		
 		panel.add(files,gbc);
 	}
 	
@@ -195,6 +226,18 @@ public class ToolCreatePage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		links = new JButton("Add Links");
+		
+		// This opens two dialog windows that take two relevant pieces of data from the user. Then an object is constructed and 
+		// added to the links array.
+		links.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String label = (String)JOptionPane.showInputDialog(new Frame(),"What is the links label?","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				String link = (String)JOptionPane.showInputDialog(new Frame(),"What is the links URL?","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				
+				linkArr.add(new ToolLink(label,link));
+			}
+		});
+		
 		panel.add(links,gbc);
 	}
 	
@@ -212,6 +255,18 @@ public class ToolCreatePage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		reminders = new JButton("Add Reminders");
+		
+		// This opens two dialog windows that take two relevant pieces of data from the user. Then an object is constructed and 
+		// added to the reminders array.
+		reminders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String date = (String)JOptionPane.showInputDialog(new Frame(),"What is the reminders date? (MM/DD/YYYY)","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				String notes = (String)JOptionPane.showInputDialog(new Frame(),"What is are the details of the reminder?","File attachments", JOptionPane.PLAIN_MESSAGE,null, null, null);
+				
+				reminderArr.add(new ToolReminder(date,notes));
+			}
+		});
+		
 		panel.add(reminders,gbc);
 	}
 	
@@ -240,6 +295,7 @@ public class ToolCreatePage extends JFrame {
 				String tagText = tags.getText();
 				ArrayList<String> riTags = new ArrayList<String>();
 				
+				// Split the tags on each comma
 				for (String tag : tagText.split(",")) {
 					riTags.add(tag.trim());
 				}
@@ -249,11 +305,11 @@ public class ToolCreatePage extends JFrame {
 					runProgram.getToolbox().remove(editTool);
 				}
 				
-				Tool newTool = new Tool(name.getText(),serial.getText(),riTags);
+				Tool newTool = new Tool(name.getText(),serial.getText(),riTags,linkArr,fileArr,reminderArr);
 				runProgram.getToolbox().add(newTool);
 				runProgram.updateTags();
 				
-				new ToolBoxPage();
+				new ToolBoxPage("");
 				tempFrame.dispose();
 			}
 		});
@@ -282,7 +338,7 @@ public class ToolCreatePage extends JFrame {
 		// This closes this window and reopens the toolbox
 		discard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ToolBoxPage();
+				new ToolBoxPage("");
 				tempFrame.dispose();
 			}
 		});

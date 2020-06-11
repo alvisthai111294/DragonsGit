@@ -7,8 +7,8 @@ package model;
  */
 public class ToolFile {
 
-	String label; // The label that is used to represent the file path
-	String path; // The actual literal file path
+	private String label; // The label that is used to represent the file path
+	private String path; // The actual literal file path
 	
 	/** Basic constructor
 	 * 
@@ -18,8 +18,8 @@ public class ToolFile {
 	 * @param path is a filepath passed in to represent the file's location
 	 */
 	public ToolFile(String label, String path) {
-		this.label = label;
-		this.path = path;
+		this.setLabel(label);
+		this.setPath(path);
 	}
 	
 	/** Compares a passed in label to the given label.
@@ -29,10 +29,26 @@ public class ToolFile {
 	 */
 	public boolean checkLabel(String label) {
 		
-		if (this.label.equalsIgnoreCase(label)) {
+		if (this.getLabel().equalsIgnoreCase(label)) {
 			return true;
 		}
 		
 		return false;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

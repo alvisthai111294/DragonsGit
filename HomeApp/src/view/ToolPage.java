@@ -1,7 +1,9 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -13,6 +15,9 @@ import javax.swing.*;
 
 import controller.runProgram;
 import model.Tool;
+import model.ToolFile;
+import model.ToolLink;
+import model.ToolReminder;
 
 /** This is the page that you see after picking a tool from your toolbox.
  * 
@@ -59,6 +64,10 @@ public class ToolPage extends JFrame {
 		this.setVisible(true);
 	}
 	
+	/** Adds all functionality to the panel
+	 * 
+	 * @author chasealder
+	 */
 	public void buildPanel() {
 		addGoBackButton();
 		addNameLabel();
@@ -92,7 +101,7 @@ public class ToolPage extends JFrame {
 		// This closes this window and reopens the toolbox
 		goBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ToolBoxPage();
+				new ToolBoxPage("");
 				tempFrame.dispose();
 			}
 		});
@@ -176,6 +185,40 @@ public class ToolPage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		files = new JButton("Files");
+		
+		// This array is used to display the options in the dropdown menu
+		String[] options = new String[tool.getFiles().size()];
+		int i = 0;
+		// Populate the above array with all associated ToolFile objects
+		for ( ToolFile tf : tool.getFiles()) {
+			options[i] = tf.getLabel();
+			i++;
+		}
+		
+		files.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// This opens a window where they can pick which file to view
+				String choice = (String)JOptionPane.showInputDialog(new Frame(),"Choose your file","File attachments", JOptionPane.PLAIN_MESSAGE,null, options,options[0]);
+				
+				// If they pick something valid...
+				if ((choice != null) && (choice.length() > 0)) {
+					
+					// Get an empty string
+					String data = "";
+					
+					// Fill the string with the file path
+					for (ToolFile tf : tool.getFiles()) {
+						if (tf.getLabel().equals(choice))
+							data = tf.getPath();
+					}
+					
+					// Display the file path
+					JOptionPane.showMessageDialog(new Frame(), data);
+				}
+			}
+		});
+		
 		panel.add(files,gbc);
 	}
 	
@@ -193,6 +236,38 @@ public class ToolPage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		links = new JButton("Links");
+		
+		// Make a normal string array (instead of arraylist) of all the link labels (Just their labels)
+		String[] options = new String[tool.getLinks().size()];
+		int i = 0;
+		for ( ToolLink tl : tool.getLinks()) {
+			options[i] = tl.getLabel();
+			i++;
+		}
+		
+		// Allow the user to click on a label and be shown it's relevant information
+		links.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String choice = (String)JOptionPane.showInputDialog(new Frame(),"LINE","title", JOptionPane.PLAIN_MESSAGE,null, options,options[0]);
+				
+				// If they pick something valid...
+				if ((choice != null) && (choice.length() > 0)) {
+					
+					// Get an empty string
+					String data = "";
+					
+					// Fill the string with the website link
+					for (ToolLink tl : tool.getLinks()) {
+						if (tl.getLabel().equals(choice))
+							data = tl.getLink();
+					}
+					
+					// Display the file path
+					JOptionPane.showMessageDialog(new Frame(), data);
+				}
+			}
+		});
+		
 		panel.add(links,gbc);
 	}
 	
@@ -210,6 +285,37 @@ public class ToolPage extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		reminders = new JButton("Reminders");
+		
+		// Make a normal string array (instead of arraylist) of all the reminder dates (Just their dates)
+		String[] options = new String[tool.getReminders().size()];
+		int i = 0;
+		for ( ToolReminder tr : tool.getReminders()) {
+			options[i] = tr.getDate();
+			i++;
+		}
+		
+		reminders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String choice = (String)JOptionPane.showInputDialog(new Frame(),"LINE","title", JOptionPane.PLAIN_MESSAGE,null, options,options[0]);
+				
+				// If they pick something valid...
+				if ((choice != null) && (choice.length() > 0)) {
+					
+					// Get an empty string
+					String data = "";
+					
+					// Fill the string with the website link
+					for (ToolReminder tr : tool.getReminders()) {
+						if (tr.getDate().equals(choice))
+							data = tr.getNotes();
+					}
+					
+					// Display the file path
+					JOptionPane.showMessageDialog(new Frame(), data);
+				}
+			}
+		});
+		
 		panel.add(reminders,gbc);
 	}
 	
@@ -265,7 +371,7 @@ public class ToolPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				runProgram.getToolbox().remove(tool);
 				runProgram.updateTags();
-				new ToolBoxPage();
+				new ToolBoxPage("");
 				tempFrame.dispose();
 			}
 		});

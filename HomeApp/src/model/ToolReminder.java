@@ -9,8 +9,8 @@ import java.util.Date;
  */
 public class ToolReminder {
 
-	Date reminderDate; // The date that the reminder is for
-	String notes; // Any notes that the user may have added to the tool. Could be used as a basic label too
+	private String date; // The date that the reminder is for
+	private String notes; // Any notes that the user may have added to the tool. Could be used as a basic label too
 	
 	/** Basic constructor
 	 * 
@@ -19,8 +19,24 @@ public class ToolReminder {
 	 * @param date date to be saved
 	 * @param notes the notes for the reminder
 	 */
-	public ToolReminder (Date date, String notes) {
-		reminderDate = date;
+	public ToolReminder (String date, String notes) {
+		this.setDate(date);
+		this.setNotes(notes);
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
 		this.notes = notes;
 	}
 }

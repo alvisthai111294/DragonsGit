@@ -168,6 +168,7 @@ public class SettingsPopup extends JFrame {
 		
 		JButton importButton = new JButton("IMPORT");
 		
+		// If the button is clicked, let the user navigate to where the file is an import it
 		importButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser();
@@ -206,6 +207,7 @@ public class SettingsPopup extends JFrame {
 		
 		JButton saveButton = new JButton("SAVE TO FILE");
 		
+		// Exports all the data from the program to the datafile (default)
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -243,6 +245,7 @@ public class SettingsPopup extends JFrame {
 		
 		JButton exportButton = new JButton("EXPORT");
 		
+		// Lets the user pick where they want the file to be exported to
 		exportButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfc = new JFileChooser();
@@ -287,9 +290,10 @@ public class SettingsPopup extends JFrame {
 		
 		JButton about = new JButton("ABOUT");
 		
+		// This shows some information about the team and version
 		about.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver " + "2.0"
+				JOptionPane.showMessageDialog(null, " Dragon Group About Box\n Home Application Ver " + "1.0"
 						+ "\n Copyright @ 2020, UW Tacoma ", "About Us", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

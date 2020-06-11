@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -25,16 +26,19 @@ public class ToolBoxPage extends JFrame {
 	
 	// These are all UI elements
 	private JComboBox<String> tags;
-	private String chosenTag = "";
 	private JButton addTool;
 	private JButton settings;
+	
+	String tagChoice;
 	
 	/** Constructor. Set the dimensions and add the buttons.
 	 * 
 	 * @author chasealder
 	 * 
 	 */
-	public ToolBoxPage() {
+	public ToolBoxPage(String tagChoice) {
+		
+		this.tagChoice = tagChoice;
 		
 		panel.setLayout(new GridBagLayout());
 		panel.setPreferredSize(new Dimension(1000, 500));
@@ -47,6 +51,10 @@ public class ToolBoxPage extends JFrame {
 		this.setVisible(true);
 	}
 	
+	/** This adds all the functionality to the panel
+	 * 
+	 * @author chasealder
+	 */
 	public void buildPanel() {
 		addTagBox();
 		addNewToolButton();
@@ -69,9 +77,37 @@ public class ToolBoxPage extends JFrame {
 		
 		tags = new JComboBox<String>();
 		
+		// Add the option for no tag choice
+		tags.addItem(".DEFAULT.");
+		
+		// Add all existing tags (no duplicates)
 		for (int i = 0; i < runProgram.getTags().size(); i++) {
 			tags.addItem(runProgram.getTags().get(i));
 		}
+		
+		// This is a temp variable so I can access the frame inside the action listener
+		JFrame tempFrame = this;
+		
+		// This is for when they click the button
+		tags.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Get their selection
+				String s = (String) tags.getSelectedItem();
+				
+				// If it's default, just reload a fresh page
+				if (s.contentEquals(".DEFAULT.")) {
+					tempFrame.dispose();
+					new ToolBoxPage("");	
+				}
+				
+				else {
+					tempFrame.dispose();
+					new ToolBoxPage(s);
+				}
+				
+			}
+		});
 		
 		panel.add(tags,gbc);
 	}
@@ -130,9 +166,9 @@ public class ToolBoxPage extends JFrame {
 		panel.add(settings,gbc);
 	}
 	
-	/** This method is going to add buttons for all the tools through some type of loop
-	 * Currently has one placeholder tool.
+	/** This adds all the relevant tool buttons to the panel
 	 * 
+	 * @author chasealder
 	 * 
 	 */
 	public void addToolButtons() {
@@ -140,36 +176,38 @@ public class ToolBoxPage extends JFrame {
 		// This is to initialize all the buttons, and set up their action listeners
 		for (int i = 0; i < runProgram.getToolbox().size(); i++) {
 			
-			gbc.insets = new Insets(0,0,0,0);
-			gbc.weightx = 1;
-			gbc.weighty = 1;
-			gbc.gridx = 0;
-			// y location changes with each button added
-			gbc.gridy = 1 + i;
-			gbc.gridwidth = 4;
-			gbc.fill = GridBagConstraints.BOTH;
-			
-			// Read the relevant information
-			String toolName = runProgram.getToolbox().get(i).getName();
-			String toolSerial = runProgram.getToolbox().get(i).getSerial();
-			
-			// Make the button with it's name
-			JButton newButton = new JButton(toolName);
-			
-			// This must be final for the action listener I guess?
-			final int passIn = i;
-			
-			JFrame tempFrame = this;
-			
-			newButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					tempFrame.dispose();
-					new ToolPage(runProgram.getToolbox().get(passIn));
-				}
-			});
-			
-			// This is where you test for the tag. Not yet implemented
-			if (chosenTag.equals("")) {
+			// Only add the buttons that have the tag the user has selected (unless there is no tag selected)
+			if (runProgram.getToolbox().get(i).getTags().contains(tagChoice) || tagChoice.equals("")) {
+				gbc.insets = new Insets(0,0,0,0);
+				gbc.weightx = 1;
+				gbc.weighty = 1;
+				gbc.gridx = 0;
+				// y location changes with each button added
+				gbc.gridy = 1 + i;
+				gbc.gridwidth = 4;
+				gbc.fill = GridBagConstraints.BOTH;
+				
+				// Read the relevant information
+				String toolName = runProgram.getToolbox().get(i).getName();
+				String toolSerial = runProgram.getToolbox().get(i).getSerial();
+				
+				// Make the button with it's name
+				JButton newButton = new JButton(toolName);
+				
+				// This must be final for the action listener I guess?
+				final int passIn = i;
+				
+				JFrame tempFrame = this;
+				
+				// Dispose of the old page and refresh it if the user selects a tag
+				newButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						tempFrame.dispose();
+						new ToolPage(runProgram.getToolbox().get(passIn));
+					}
+				});
+				
+				// Add the button
 				panel.add(newButton,gbc);
 			}
 		}
